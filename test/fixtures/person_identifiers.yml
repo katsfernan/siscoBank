@@ -1,0 +1,11 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  identifierNumber: 1
+  emissionDate: 2022-10-02 00:07:38
+  expirationDate: 2022-10-02 00:07:38
+
+two:
+  identifierNumber: 1
+  emissionDate: 2022-10-02 00:07:38
+  expirationDate: 2022-10-02 00:07:38
