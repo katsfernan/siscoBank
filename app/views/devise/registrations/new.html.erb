@@ -1,6 +1,6 @@
 <h2>Sign up</h2>
 
-<%= nested_form_for([resource_name, resource.with_person_identifier], url: registration_path(resource_name)) do |f| %>
+<%= nested_form_for([resource_name, resource.with_person_identifier], url: registration_path(resource_name), data: {turbo: false}) do |f| %>
   <%= render "devise/shared/error_messages", resource: resource %>
 
   <div class="field">
@@ -33,7 +33,7 @@
 
   <div class="field">
     <%= f.label 'Teléfono secundario (opcional)' %><br />
-    <%= f.number_field :primaryPhone %>
+    <%= f.number_field :secondaryPhone %>
   </div>
 
   <div class="field">
