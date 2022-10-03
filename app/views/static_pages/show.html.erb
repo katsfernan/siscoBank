@@ -1,0 +1,15 @@
+<h1>Detalle del usuario</h1>
+
+<h3>Nombre:  <%=@user.name%></h3>
+<h3>Email:  <%=@user.email%></h3>
+<h3>Telefono principal:  <%= @user.primaryPhone %></h3>
+<% if @user.secondaryPhone.length > 0 %>
+    <h3>Telefono secundario:  <%= @user.secondaryPhone %></h3>
+<% end %>
+<h3>Tipo de persona: <%= @personType.name %></h3>
+<h3>Tipo de documento: <%= @identifierType.name %></h3>
+<h3>Número de documento: <%= @personIdentifier.identifierNumber %></h3>
+<h3>Fecha de emision documento: <%= @emissionDate %></h3>
+<h3>Fecha de vencimiento documento: <%= @expirationDate %></h3>
+
+

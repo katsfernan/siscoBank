@@ -1,2 +1,10 @@
-<h1>StaticPages#dashboard</h1>
-<p>Find me in app/views/static_pages/dashboard.html.erb</p>
+<h1>Welcome to SiscoBank</h1>
+<h3>Users</h3>
+<br>
+
+<%@users.each do |user| %>
+    <h4> <%= user.email %> </h4>
+    <h5>  <%= user.name %> </h4>
+    <%= link_to "Detalle del usuario", userDetail_path(user.id) %>
+    <hr>
+<% end %>

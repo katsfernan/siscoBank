@@ -3,7 +3,7 @@ Rails.application.routes.draw do
     :registrations => "users/registrations"
   }
 
-  get 'static_pages/landing_page'
-  get 'static_pages/dashboard'
+  get 'dashboard', to: 'static_pages#dashboard', as: :dashboard
+  get 'dashboard/user/:id', to: 'static_pages#show', as: :userDetail
   root 'static_pages#landing_page'
 end

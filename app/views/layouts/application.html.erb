@@ -15,7 +15,11 @@
     <p class="alert"><%= alert %></p>
     <% if current_user %>
       <%= current_user.email%>
-      <%= button_to "Cerrar sesion", destroy_user_session_path, method: :delete, data: {turbo: false} %>
+      <%= link_to "Usuarios", dashboard_path %>
+      <%= button_to "Cerrar sesión", destroy_user_session_path, method: :delete, data: {turbo: false} %>
+    <% else %>
+      <%= link_to "Registrarse", new_user_registration_path %>
+      <%= link_to "Iniciar sesión", new_user_session_path %>
     <% end %>
     <%= yield %>
   </body>
