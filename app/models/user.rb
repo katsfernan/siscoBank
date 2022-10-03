@@ -1,11 +1,17 @@
 class User < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
+  include ActiveModel::Validations
+
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable
 
-  validates :name, presence: true
-  validates :primaryPhone, presence: true
+  validates :name, presence: true, format: { with: /\A[a-zA-Z]+\z/,
+    message: "just admit letters" }
+
+  validates :primaryPhone, presence: true, length: { is: 11 }
+
+  validates_with UserValidator
 
   belongs_to :person_type
   

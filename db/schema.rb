@@ -47,8 +47,8 @@ ActiveRecord::Schema[7.0].define(version: 2022_10_02_230351) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "name", null: false
-    t.integer "primaryPhone", null: false
-    t.integer "secondaryPhone"
+    t.string "primaryPhone", null: false
+    t.string "secondaryPhone"
     t.bigint "person_type_id", null: false
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["person_type_id"], name: "index_users_on_person_type_id"
