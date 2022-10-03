@@ -10,9 +10,23 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # end
 
   # POST /resource
-  # def create
-  #   super
-  # end
+  def create
+    person_type = PersonType.find(params['user']['person_type_id'])
+    identifier_type = IdentifierType.find(
+      params['user']['person_identifier_attributes']['identifier_type_id']
+    )
+    
+    if person_type.name === 'Natural' && ("RIF").include?(identifier_type.name)
+      redirect_to new_user_registration_path, flash: { notice: 'Natural persons cannot contains RIF document'}, status: :ok
+    
+    elsif person_type.name === 'Jurídica' && (["Cédula", "Pasaporte"]).include?(identifier_type.name)
+      redirect_to new_user_registration_path, flash: { notice: 'Juridical persons cannot contains Cedula or Pasaporte document'}, status: :ok
+    
+    else
+      super
+    end
+    
+  end
 
   # GET /resource/edit
   # def edit
