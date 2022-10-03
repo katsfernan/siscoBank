@@ -1,42 +1,83 @@
-<h2>Edit <%= resource_name.to_s.humanize %></h2>
+<h2>Editar usuario</h2>
 
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
-  <%= render "devise/shared/error_messages", resource: resource %>
+<%= nested_form_for([resource_name, resource.with_person_identifier], url: registration_path(resource_name), data: {turbo: false}) do |f| %>
+
+<%= render "devise/shared/error_messages", resource: resource %>
 
   <div class="field">
-    <%= f.label :email %><br />
+    <%= f.label 'Correo electrónico' %><br />
     <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
   </div>
 
-  <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
-    <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
-  <% end %>
-
   <div class="field">
-    <%= f.label :password %> <i>(leave blank if you don't want to change it)</i><br />
-    <%= f.password_field :password, autocomplete: "new-password" %>
+    <%= f.label 'Contraseña actual' %>
     <% if @minimum_password_length %>
-      <br />
-      <em><%= @minimum_password_length %> characters minimum</em>
-    <% end %>
+    <em>(Mínimo  <%= @minimum_password_length %> caracteres)</em>
+    <% end %><br />
+    <%= f.password_field :current_password, autocomplete: "new-password" %>
   </div>
 
   <div class="field">
-    <%= f.label :password_confirmation %><br />
+    <%= f.label 'Contraseña' %>
+    <% if @minimum_password_length %>
+    <em>(Mínimo  <%= @minimum_password_length %> caracteres)</em>
+    <% end %><br />
+    <%= f.password_field :password, autocomplete: "new-password" %>
+  </div>
+
+  <div class="field">
+    <%= f.label 'Repetir contraseña' %><br />
     <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
   </div>
 
   <div class="field">
-    <%= f.label :current_password %> <i>(we need your current password to confirm your changes)</i><br />
-    <%= f.password_field :current_password, autocomplete: "current-password" %>
+    <%= f.label 'Nombre' %><br />
+    <%= f.text_field :name%>
   </div>
 
+  <div class="field">
+    <%= f.label 'Teléfono principal' %><br />
+    <%= f.number_field :primaryPhone %>
+  </div>
+
+  <div class="field">
+    <%= f.label 'Teléfono secundario (opcional)' %><br />
+    <%= f.number_field :secondaryPhone %>
+  </div>
+
+  <div class="field">
+    <%= f.label 'Tipo de persona' %><br />
+    <%= f.collection_select :person_type_id , PersonType.all, :id, :name %>
+  </div>
+
+  <%= f.fields_for :person_identifier do |p| %>
+    <div class="field">
+      <%= p.label 'Tipo de documento' %><br />
+      <%= p.collection_select :identifier_type_id, IdentifierType.all,:id, :name %>
+    </div>
+
+    <div class="field">
+      <%= p.label 'Número de documento' %><br />
+      <%= p.number_field :identifierNumber %>
+    </div>
+
+    <div class="field">
+      <%= p.label 'Fecha de emisión del documento' %><br />
+      <%= p.date_field :emissionDate %>
+    </div>
+
+    <div class="field">
+      <%= p.label 'Fecha de vencimiento del documento' %><br />
+      <%= p.date_field :expirationDate %>
+    </div>
+  <% end %>
+  
   <div class="actions">
-    <%= f.submit "Update" %>
+    <%= f.submit "Editar" %>
   </div>
 <% end %>
 
-<h3>Cancel my account</h3>
+<h3>Eiminar cuenta</h3>
 
 <p>Unhappy? <%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete %></p>
 

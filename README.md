@@ -1,24 +1,25 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+SiscoBAnk Ruby on Rails Authentication APP
 
-Things you may want to cover:
+* Ruby version: 3.1.2
 
-* Ruby version
+* Rails version: 7.0.4
 
-* System dependencies
+* RVM version: 1.29.12-next
 
-* Configuration
+Pasos para ejecutar la aplicación
 
-* Database creation
+* 1.- Instalar postgresql 
 
-* Database initialization
+* 2.- Ejecutar terminal 
 
-* How to run the test suite
+*   2.1.- Ejecutar rails db:create
 
-* Services (job queues, cache servers, search engines, etc.)
+*   2.2.- Ejecutar rails db:migrate
 
-* Deployment instructions
+*   2.3.- Ejecutar rails db:seed
+
+*   2.3.- Ejecutar rails server
 
 * ...

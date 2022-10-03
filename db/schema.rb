@@ -21,7 +21,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_10_02_230351) do
   end
 
   create_table "person_identifiers", force: :cascade do |t|
-    t.integer "identifierNumber", null: false
+    t.string "identifierNumber", null: false
     t.datetime "emissionDate", null: false
     t.datetime "expirationDate", null: false
     t.datetime "created_at", null: false

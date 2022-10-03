@@ -5,3 +5,23 @@
 #
 #   movies = Movie.create([{ name: "Star Wars" }, { name: "Lord of the Rings" }])
 #   Character.create(name: "Luke", movie: movies.first)
+
+
+person_types = PersonType.create([{
+    name: "Natural"
+    },
+    {
+    name: "Jurídica"
+    }
+])
+
+identifier_types = IdentifierType.create([{
+    name: 'Cédula'
+    },
+    {
+    name: 'Pasaporte'
+    },
+    {
+        name: 'RIF'
+    }
+])

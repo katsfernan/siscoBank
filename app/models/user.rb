@@ -9,6 +9,8 @@ class User < ApplicationRecord
   validates :name, presence: true, format: { with: /\A[a-zA-Z]+\z/,
     message: "just admit letters" }
 
+  validates :email, uniqueness: true
+
   validates :primaryPhone, presence: true, length: { is: 11 }
 
   validates_with UserValidator
