@@ -1,26 +1,68 @@
 <h2>Sign up</h2>
 
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+<%= nested_form_for([resource_name, resource.with_person_identifier], url: registration_path(resource_name)) do |f| %>
   <%= render "devise/shared/error_messages", resource: resource %>
 
   <div class="field">
-    <%= f.label :email %><br />
+    <%= f.label 'Correo electrónico' %><br />
     <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
   </div>
 
   <div class="field">
-    <%= f.label :password %>
+    <%= f.label 'Contraseña' %>
     <% if @minimum_password_length %>
-    <em>(<%= @minimum_password_length %> characters minimum)</em>
+    <em>(Mínimo  <%= @minimum_password_length %> caracteres)</em>
     <% end %><br />
     <%= f.password_field :password, autocomplete: "new-password" %>
   </div>
 
   <div class="field">
-    <%= f.label :password_confirmation %><br />
+    <%= f.label 'Repetir contraseña' %><br />
     <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
   </div>
 
+  <div class="field">
+    <%= f.label 'Nombre' %><br />
+    <%= f.text_field :name%>
+  </div>
+
+  <div class="field">
+    <%= f.label 'Teléfono principal' %><br />
+    <%= f.number_field :primaryPhone %>
+  </div>
+
+  <div class="field">
+    <%= f.label 'Teléfono secundario (opcional)' %><br />
+    <%= f.number_field :primaryPhone %>
+  </div>
+
+  <div class="field">
+    <%= f.label 'Tipo de persona' %><br />
+    <%= f.collection_select :person_type_id , PersonType.all, :id, :name %>
+  </div>
+
+  <%= f.fields_for :person_identifier do |p| %>
+    <div class="field">
+      <%= p.label 'Tipo de documento' %><br />
+      <%= p.collection_select :identifier_type_id, IdentifierType.all,:id, :name %>
+    </div>
+
+    <div class="field">
+      <%= p.label 'Número de documento' %><br />
+      <%= p.number_field :identifierNumber %>
+    </div>
+
+    <div class="field">
+      <%= p.label 'Fecha de emisión del documento' %><br />
+      <%= p.date_field :emissionDate %>
+    </div>
+
+    <div class="field">
+      <%= p.label 'Fecha de vencimiento del documento' %><br />
+      <%= p.date_field :expirationDate %>
+    </div>
+  <% end %>
+  
   <div class="actions">
     <%= f.submit "Sign up" %>
   </div>
