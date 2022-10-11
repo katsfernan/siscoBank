@@ -1,0 +1,44 @@
+es:
+  errors:
+    messages:
+      not_saved: 'Se han detectado los siguientes errores de formulario:'
+  activerecord:
+    models:
+      user: Usuario
+      person_identifier: 'Identificador de persona'
+    attributes:
+      user:
+        name: 'Nombre'
+        primaryPhone: 'Teléfono primario'
+        secondaryPhone: 'Télefono secundario'
+      person_identifier:
+        emissionDate: 'Fecha de emisión de documento'
+        expirationDate: 'Fecha de vencimiento de documento'
+        identifierNumber: 'Número de identificación'
+    errors:
+      messages:
+        just_admit_letters_spaces: 'solo admite letras y espacios'
+        integer_only_no_signs: 'solo admite caracteres numéricos sin signo'
+      models:
+        user:
+          attributes:
+            email:
+              blank: 'no puede estar vacio'
+            name:
+              blank: 'no puede estar vacio'
+            primaryPhone:
+              blank: 'no puede estar vacio'
+              wrong_length: 'debe tener 11 caracteres'
+            base:
+              natural_cant_contain_rif: 'Persona Natural no puede tener un RIF'
+              juridical_cant_contain_ci_or_pasport: 'Persona Jurídica  no puede tener un pasaporte o cédula'
+              primaryPhone_starts_with_zero: 'Telefono primario debe empezar con cero'
+        person_identifier:
+          attributes:
+            emissionDate:
+              blank: 'no puede estar vacía'
+            expirationDate:
+              blank: 'no puede estar vacía'
+            identifierNumber:
+              blank: 'no puede estar vacío'
+              too_short: 'debe contener entre 6 y 20 caracteres'

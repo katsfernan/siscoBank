@@ -1,6 +1,9 @@
 class PersonIdentifier < ApplicationRecord
 
-    validates :identifierNumber, presence: true, format: { with: /\A\d+\z/, message: "Integer only. No sign allowed." }, length: { in: 6..20 }, uniqueness: true
+    validates :identifierNumber, presence: true, 
+    format: { with: /\A\d+\z/, 
+        message: :integer_only_no_signs }, 
+    length: { in: 6..20 }, uniqueness: true
     validates :emissionDate, presence: true
     validates :expirationDate, presence: true
     validate :expirationGreaterThanEmission

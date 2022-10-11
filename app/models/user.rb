@@ -7,7 +7,7 @@ class User < ApplicationRecord
          :recoverable, :rememberable
 
   validates :name, presence: true, format: { with: /\A[a-zA-Z\s]+\z/,
-    message: "just admit letters" }
+    message: :just_admit_letters_spaces }
 
   validates :email, uniqueness: true
 
@@ -37,16 +37,16 @@ class User < ApplicationRecord
     )
     
     if person_type.name === 'Natural' && ("RIF").include?(identifier_type.name)
-        errors.add(:incorrect, 'Natural persons cannot contains RIF document')
+        errors.add(:base, :natural_cant_contain_rif)
 
     elsif person_type.name === 'Jurídica' && (["Cédula", "Pasaporte"]).include?(identifier_type.name)
-        errors.add(:incorrect, 'Juridical persons cannot contains Cedula or Pasaporte document')
+        errors.add(:base, :juridical_cant_contain_ci_or_pasport)
     end
   end
 
   def validate_phone_number
       unless primaryPhone.start_with? '0'
-        errors.add :primaryPhone, "should starts with 0"
+        errors.add :base, :primaryPhone_starts_with_zero
       end
 
       if !secondaryPhone.start_with?('0') && secondaryPhone.length > 0
