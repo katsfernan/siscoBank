@@ -9,7 +9,9 @@ class PersonIdentifier < ApplicationRecord
     belongs_to :user
 
     def expirationGreaterThanEmission
-        errors.add(:emissionDate, "must be less than expiration time") unless
-        emissionDate < expirationDate
-    end 
+        if !emissionDate.blank? && !emissionDate.blank? 
+            errors.add(:emissionDate, "must be less than expiration time") unless
+            emissionDate < expirationDate
+        end
+    end
 end
