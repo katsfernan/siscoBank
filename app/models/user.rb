@@ -19,7 +19,7 @@ class User < ApplicationRecord
 
   belongs_to :person_type
   
-  has_one :person_identifier
+  has_one :person_identifier, dependent: :destroy
 
   accepts_nested_attributes_for :person_identifier
 
