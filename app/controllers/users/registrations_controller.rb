@@ -64,7 +64,9 @@ class Users::RegistrationsController < Devise::RegistrationsController
   def configure_account_update_params
     devise_parameter_sanitizer.permit(
       :account_update, keys: [
-        :attribute,
+        :password,
+        :password_confirmation,
+        :current_password,
         :name,
         :primaryPhone,
         :secondaryPhone,

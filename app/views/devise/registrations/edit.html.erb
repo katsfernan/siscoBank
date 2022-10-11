@@ -5,11 +5,6 @@
 <%= render "devise/shared/error_messages", resource: resource %>
 
   <div class="field">
-    <%= f.label 'Correo electrónico' %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
-  </div>
-
-  <div class="field">
     <%= f.label 'Contraseña actual' %>
     <em>(Mínimo  6 caracteres)</em><br />
     <%= f.password_field :current_password, autocomplete: "new-password" %>
