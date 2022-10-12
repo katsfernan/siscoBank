@@ -1,4 +1,18 @@
 es:
+  devise:
+    failure:
+      user:
+        not_found_in_database: 'Usuario o contraseña incorrectos'
+        unauthenticated: 'Usted no esta autenticado'
+    registrations:
+      user:
+        signed_up: 'Usted se ha registrado con éxito'
+        destroyed: 'Usuario eliminado con éxito'
+        updated: 'Usuario actualizado con éxito'
+    sessions:
+      user:
+        signed_out: 'Se ha cerrado sesión con éxito'
+        already_signed_out: 'Ya se ha cerrado sesión'
   errors:
     messages:
       not_saved: 'Se han detectado los siguientes errores de formulario:'
@@ -11,6 +25,7 @@ es:
         name: 'Nombre'
         primaryPhone: 'Teléfono primario'
         secondaryPhone: 'Télefono secundario'
+        current_password: 'Contraseña actual'
       person_identifier:
         emissionDate: 'Fecha de emisión de documento'
         expirationDate: 'Fecha de vencimiento de documento'
@@ -29,6 +44,9 @@ es:
             primaryPhone:
               blank: 'no puede estar vacio'
               wrong_length: 'debe tener 11 caracteres'
+            current_password:
+              blank: 'no puede estar vacia'
+              invalid: 'incorrecta'
             base:
               natural_cant_contain_rif: 'Persona Natural no puede tener un RIF'
               juridical_cant_contain_ci_or_pasport: 'Persona Jurídica  no puede tener un pasaporte o cédula'

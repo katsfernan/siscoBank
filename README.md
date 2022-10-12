@@ -20,6 +20,16 @@ Pasos para ejecutar la aplicación
 
 *   2.3.- Ejecutar rails db:seed
 
-*   2.3.- Ejecutar rails server
+*   2.4.- Ejecutar rails
+
+*   2.4.1.- Ejecutar rails con tailwind
+
+*       2.4.1.1.- Ejecutar el codigo bundle install
+
+*       2.4.1.2.- Ejecutar el codigo bin/dev
+
+*   2.4.2.- Ejecutar rails sin estilos tailwind
+
+*       2.4.2.1.- Ejecutar codigo rails server
 
 * ...

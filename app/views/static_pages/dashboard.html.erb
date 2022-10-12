@@ -1,10 +1,30 @@
-<h1>Welcome to SiscoBank</h1>
-<h3>Users</h3>
-<br>
+<h2 class="text-2xl mt-4 mb-6 text-center">Usuarios SiscoBank</h2>
 
-<%@users.each do |user| %>
-    <h4> <%= user.email %> </h4>
-    <h5>  <%= user.name %> </h4>
-    <%= link_to "Detalle del usuario", userDetail_path(user.id) %>
-    <hr>
-<% end %>
+<div class="flex flex-col justify-center items-center">
+    <table class="table-fixed border-separate border-spacing-2 border border-slate-400">
+        <thead>
+          <tr>
+            <th>Nombre de usuario</th>
+            <th>Email del usuario</th>
+            <th>Acciones</th>
+          </tr>
+        </thead>
+        <tbody>
+            <%@users.each do |user| %>
+                <tr>
+                    <td><%= user.email %> </td>
+                    <td><%= user.name %> </td>
+                    <td>
+                        <div class="m-4">
+                            <%= 
+                            link_to "Detalle del usuario",
+                            userDetail_path(user.id),
+                            class: "bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full"
+                        %>
+                        </div>
+                    </td>
+                </tr>
+            <% end %>
+        </tbody>
+      </table>
+</div>

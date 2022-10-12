@@ -1,76 +1,157 @@
-<h2>Editar usuario</h2>
-
-<%= nested_form_for([resource_name, resource.with_person_identifier], url: registration_path(resource_name), data: {turbo: false}) do |f| %>
-
-<%= render "devise/shared/error_messages", resource: resource %>
-
-  <div class="field">
-    <%= f.label 'Contraseña actual' %>
-    <em>(Mínimo  6 caracteres)</em><br />
-    <%= f.password_field :current_password, autocomplete: "new-password" %>
-  </div>
-
-  <div class="field">
-    <%= f.label 'Contraseña' %>
-    <% if @minimum_password_length %>
-    <em>(Mínimo  <%= @minimum_password_length %> caracteres)</em>
-    <% end %><br />
-    <%= f.password_field :password, autocomplete: "new-password" %>
-  </div>
-
-  <div class="field">
-    <%= f.label 'Repetir contraseña' %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
-  </div>
-
-  <div class="field">
-    <%= f.label 'Nombre' %><br />
-    <%= f.text_field :name%>
-  </div>
-
-  <div class="field">
-    <%= f.label 'Teléfono principal' %><br />
-    <%= f.number_field :primaryPhone %>
-  </div>
-
-  <div class="field">
-    <%= f.label 'Teléfono secundario (opcional)' %><br />
-    <%= f.number_field :secondaryPhone %>
-  </div>
-
-  <div class="field">
-    <%= f.label 'Tipo de persona' %><br />
-    <%= f.collection_select :person_type_id , PersonType.all, :id, :name %>
-  </div>
-
-  <%= f.fields_for :person_identifier do |p| %>
-    <div class="field">
-      <%= p.label 'Tipo de documento' %><br />
-      <%= p.collection_select :identifier_type_id, IdentifierType.all,:id, :name %>
+<h2 class="text-2xl mt-4 mb-4 text-center">Editar usuario</h2>
+<div class="w-2/4 ml-6">
+  <%= nested_form_for([resource_name, resource.with_person_identifier], url: registration_path(resource_name), data: {turbo: false}) do |f| %>
+    <%= render "devise/shared/error_messages", resource: resource %>
+    <div class="mb-4">
+      <%= f.label 'Correo electrónico',
+      class: "block text-gray-700 text-sm font-bold mb-2" 
+      %>
+      <%= f.email_field :email, 
+      autocomplete: true,
+      class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+      %>
     </div>
 
-    <div class="field">
-      <%= p.label 'Número de documento' %><br />
-      <%= p.number_field :identifierNumber %>
+    <div class="mb-4">
+      <%= f.label 'Contraseña actual',
+        class: "block text-gray-700 text-sm font-bold mb-2"
+      %>
+      <em>(Mínimo  6 caracteres)</em>
+      <%=
+        f.password_field :current_password,
+        autocomplete: "new-password",
+        class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+        %>
     </div>
 
-    <div class="field">
-      <%= p.label 'Fecha de emisión del documento' %><br />
-      <%= p.date_field :emissionDate %>
+    <div class="mb-4">
+      <%= f.label 'Nueva contraseña',
+      class: "block text-gray-700 text-sm font-bold mb-2"
+      %>
+      <em>(Mínimo  6 caracteres)</em>
+      <%= f.password_field :password, autocomplete: "new-password",
+      class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+      %>
     </div>
 
-    <div class="field">
-      <%= p.label 'Fecha de vencimiento del documento' %><br />
-      <%= p.date_field :expirationDate %>
+    <div class="mb-4">
+      <%= 
+        f.label 'Repetir contraseña',
+        class:"block text-gray-700 text-sm font-bold mb-2"
+      %>
+      <%= 
+        f.password_field :password_confirmation,
+        class:"shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline",
+        autocomplete: "new-password" 
+      %>
+    </div>
+
+    <div class="mb-4">
+      <%= f.label 'Nombre',
+      class:"block text-gray-700 text-sm font-bold mb-2"
+      %>
+      <%= f.text_field :name,
+      class:"shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+      %>
+    </div>
+
+    <div class="mb-4">
+      <%= 
+        f.label 'Teléfono principal',
+        class:"block text-gray-700 text-sm font-bold mb-2"
+      %>
+      <em>Debe comenzar con codigo de área (Ejemplo: 02125555555) </em>
+      <%=
+        f.number_field :primaryPhone,
+        class:"shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+      %>
+    </div>
+
+    <div class="mb-4">
+      <%= 
+        f.label 'Teléfono secundario (opcional)',
+        class:"block text-gray-700 text-sm font-bold mb-2"
+      %>
+      <em>Debe comenzar con codigo de área (Ejemplo: 02125555555) </em>
+      <%=
+        f.number_field :secondaryPhone,
+        class:"shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+      %>
+    </div>
+
+    <div class="mb-4">
+      <%= 
+        f.label 'Tipo de persona',
+        class:"block text-gray-700 text-sm font-bold mb-2"
+      %>
+      <%= 
+        f.collection_select :person_type_id ,
+        PersonType.all, :id, :name,
+        class: "block appearance-none w-full bg-white border border-gray-400 hover:border-gray-500 px-4 py-2 pr-8 rounded shadow leading-tight focus:outline-none focus:shadow-outline"
+      %>
+    </div>
+
+    <%= f.fields_for :person_identifier do |p| %>
+      <div class="mb-4">
+        <%=
+          p.label 'Tipo de documento',
+          class:"block text-gray-700 text-sm font-bold mb-2"
+        %>
+        <%=
+          p.collection_select :identifier_type_id,
+          IdentifierType.all,:id, :name,
+          class: "block appearance-none w-full bg-white border border-gray-400 hover:border-gray-500 px-4 py-2 pr-8 rounded shadow leading-tight focus:outline-none focus:shadow-outline"
+        %>
+      </div>
+
+      <div class="mb-4">
+        <%=
+          p.label 'Número de documento',
+          class:"block text-gray-700 text-sm font-bold mb-2"
+        %>
+        <%=
+          p.number_field :identifierNumber,
+          class:"shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+        %>
+      </div>
+
+      <div class="mb-4">
+        <%=
+          p.label 'Fecha de emisión del documento',
+          class:"block text-gray-700 text-sm font-bold mb-2"
+        %>
+        <%=
+          p.date_field :emissionDate
+        %>
+      </div>
+
+      <div class="mb-4">
+        <%=
+          p.label 'Fecha de vencimiento del documento',
+          class:"block text-gray-700 text-sm font-bold mb-2"
+        %>
+        <%=
+          p.date_field :expirationDate
+        %>
+      </div>
+    <% end %>
+  </div>
+    <div class="flex flex-col justify-center items-center">
+      <%= f.submit "Editar",
+      class: "bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+      %>
+      <h3 class="mt-4">¿Desea eliminar su cuenta?</h3>
     </div>
   <% end %>
-  
-  <div class="actions">
-    <%= f.submit "Editar" %>
+
+  <div class="mt-4 mb-4 flex flex-col justify-center items-center">
+    <%= 
+      button_to "Eliminar cuenta", 
+      registration_path(resource_name), 
+      data: { confirm: "Are you sure?" }, method: :delete ,
+      class: "bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+    %>
   </div>
-<% end %>
+    <%= link_to "Regresar", :back %>
 
-<h3>¿Desea eliminar su cuenta?</h3>
 
-<%= button_to "Eliminar cuenta", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete %>
-<%= link_to "Back", :back %>

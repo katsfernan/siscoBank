@@ -74,3 +74,5 @@ end
 gem 'devise', github: 'heartcombo/devise', branch: 'main'
 
 gem 'nested_form'
+
+gem "tailwindcss-rails", "~> 2.0"
